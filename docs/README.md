@@ -2,7 +2,7 @@
 
 This is the repository for a browser-based multi-dimensional image browser. [See an online version here.](https://mdib.lrk.tools) An offline, Python-based version can be found [here](https://github.com/lrkrol/Multi-Dimensional-Image-Browser).
 
-![Screenshot](/mdib.png)
+![Screenshot](./docs/mdib.png)
 
 Rather than browsing through image files in alphabetical order, this script allows them to be browsed through in a multi-dimensional fashion. Take for example the following files:
 
