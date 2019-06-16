@@ -1,0 +1,115 @@
+<!doctype html>
+
+<!--
+
+Multi-Dimensional Image Browser JS
+v1.0.0 
+
+
+MIT License
+
+Copyright (c) 2019 Laurens R Krol
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-->
+
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="utf-8" />
+
+    <title>MDIB</title>
+
+    <meta name="description" content="Multi-Dimensional Image Browser: browse through images along multiple dimensions indicated in the images' file names." />
+    <meta name="author" content="Laurens R. Krol" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mdib.lrk.tools" />
+    <meta property="og:title" content="MDIB" />
+    <meta property="og:description" content="Multi-Dimensional Image Browser: browse through images along multiple dimensions indicated in the images' file names." />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="script.js"></script>
+</head>
+
+<body>
+
+<div id="container">
+
+    <div id="sidebar">
+        <div id="tablist">
+            <div id="configtab" class="tab active" onclick="switchTab('config');">Config</div>
+            <div id="browsertab" class="tab" onclick="switchTab('browser');">Browser</div>
+        </div>
+        <div id="tabcontent">
+            <div id="configcontainer">
+                Images to use:
+                <input id="fileinput" type="file" multiple />
+                <input id="fileinputbutton" type="button" value="Select images" onclick="$('fileinput').click();" />
+                <div id="progressbar"><div id="progress"></div></div>
+
+                Pattern:<br />
+                <input id="patterninput" type="text" value="*-*-*" />
+                <input id="patterninputbutton" type="submit" value="Apply pattern" onclick="applyPattern();" />
+            </div>
+            <div id="browsercontainer">
+                First select and parse some images.
+            </div>
+        </div>
+        <div id="log">Log:<br /></div>
+    </div>
+
+    <div id="imagecontainer">
+        <div id="image">
+            <h1>Multi-Dimensional Image Browser</h1>
+
+            <p>Rather than browsing through image files in alphabetical order, this script allows them to be browsed through in a multi-dimensional fashion. Take for example the following files:</p>
+
+            <pre>apple-brown.jpg     banana-brown.jpg      pear-brown.jpg
+apple-green.jpg     banana-green.jpg      pear-green.jpg
+apple-yellow.jpg    banana-yellow.jpg     pear-yellow.jpg</pre>
+
+            <p>Regular alphabetical ordering would have you browse first through all apples, colour by colour, then through the bananas, colour by colour, and then the pears. These files, however, contain two dimensions: fruit type, and fruit colour. This script makes it possible to jump from the green banana to the green apple with one button, and from the green apple to the yellow apple with another.</p>
+
+            <p>Simply supply it with the image files you want, and the pattern with which the files are named, and the script will extract and order all dimension values.</p>
+
+            <p>File names should be consistent except for the variable parts, and the variable parts should be separated somehow. A variable part of the file names representing one dimension is indicated using an asterisk (<span class="inlinepre">*</span>). For the above example, the pattern would be</p>
+
+            <pre>*-*</pre>
+
+            <p>since there are two variable parts separated using a hyphen, and the script ignores the file extension. The delimiters between values need not be the same: <span class="inlinepre">photo-of-alice_2018@home.jpg</span> and <span class="inlinepre">photo-of-bob_2019@work.jpg</span> (etc.) can be parsed using <span class="inlinepre">photo-of-*_*@*</span>.</p>
+
+            <p>The script then allows you to browse through the available dimensions using the -/+ buttons indicated for each dimension, or the keyboard. The keys for the first dimension are under the "1", i.e. on a QWERTY keyboard, "1" itself for one up in this dimension, and "q" for one down. "2" and "w" increase and decrease the second dimension, respectively, and "0" and "p" represent the tenth dimension. The first two dimensions can additionally be controlled by the arrow keys.</p>
+
+            <p>Dimensions are numbered in the order that they appear in the file names. The values of each dimension are ordered alphabetically.</p>
+
+            <p>Try to make sure all possible combinations are present in the data. If there are gaps, it may not be possible to browse from one file to another.</p>
+            
+            <p>All processing is done locally within the browser. No images are uploaded or otherwise transmitted through the Internet.</p>
+            
+            <p><a href="./lakes.zip">Click here for a sample dataset</a> containing 144 satellite images arranged in five dimensions: coverage of three lakes in three visual bands, four scales, two years, and two seasons each. Examine, for example, the summer-winter differences at Lakes Urmia and Maharlu, the winter ice coverage difference at Lake Namtso between 2016 and 2019, and how false color bands help interpret the images especially in dry summers. Parse this data using the pattern <span class="inlinepre">*-*-*-*-*</span>.</p>           
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
