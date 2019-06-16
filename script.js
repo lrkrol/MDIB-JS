@@ -1,7 +1,7 @@
 /*
 
 Multi-Dimensional Image Browser JS
-v1.0.0 
+v1.0.1
 
 
 MIT License
@@ -257,7 +257,7 @@ function changeDim(dim, change) {
     // walking along the requested dimension if possible
     if (dim >= 0 && dim < ndims) {
         if (currentpos[dim] + change < 0 || currentpos[dim] + change >= ndimvalues[dim]) {
-            log('Reached dimension ' + dim+1 + ' boundary.');
+            log('Reached dimension ' + (dim+1) + ' boundary.');
         } else {
             currentpos[dim] = currentpos[dim] + change;
 
