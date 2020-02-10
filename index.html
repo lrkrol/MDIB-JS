@@ -3,7 +3,7 @@
 <!--
 
 Multi-Dimensional Image Browser JS
-v1.0.1
+v1.1.0
 
 
 MIT License
@@ -97,11 +97,13 @@ apple-yellow.jpg    banana-yellow.jpg     pear-yellow.jpg</pre>
 
             <p>since there are two variable parts separated using a hyphen, and the script ignores the file extension. The delimiters between values need not be the same: <span class="inlinepre">photo-of-alice_2018@home.jpg</span> and <span class="inlinepre">photo-of-bob_2019@work.jpg</span> (etc.) can be parsed using <span class="inlinepre">photo-of-*_*@*</span>.</p>
 
-            <p>The script then allows you to browse through the available dimensions using the -/+ buttons indicated for each dimension, or the keyboard. The keys for the first dimension are under the "1", i.e. on a QWERTY keyboard, "1" itself for one up in this dimension, and "q" for one down. "2" and "w" increase and decrease the second dimension, respectively, and "0" and "p" represent the tenth dimension. The first two dimensions can additionally be controlled by the arrow keys.</p>
+            <p>The script then allows you to browse through the available dimensions using the -/+ buttons indicated for each dimension, or the keyboard. The keys for the first dimension are under the button <span class="inlinepre">1</span> on your keyboard, i.e. on a QWERTY keyboard, <span class="inlinepre">1</span> itself for one up in this dimension, and <span class="inlinepre">q</span> for one down. <span class="inlinepre">2</span> and <span class="inlinepre">w</span> increase and decrease the second dimension, respectively, and <span class="inlinepre">0</span> and <span class="inlinepre">p</span> represent the tenth dimension. The first two dimensions can additionally be controlled by the arrow keys.</p>
 
-            <p>Dimensions are numbered in the order that they appear in the file names. The values of each dimension are ordered alphabetically.</p>
+            <p>Dimensions are numbered in the order that they appear in the file names. The values of each dimension are ordered alphabetically or numerically as appropriate.</p>
 
             <p>Try to make sure all possible combinations are present in the data. If there are gaps, it may not be possible to browse from one file to another.</p>
+            
+            <p>Specific positions can be saved for quick access. By pressing <span class="inlinepre">shift</span> + <span class="inlinepre">s</span>, the current position is saved to the button <span class="inlinepre">s</span>. Press <span class="inlinepre">s</span> again to directly move to the saved position. A total of 14 positions can be saved, using the buttons <span class="inlinepre">s</span> through <span class="inlinepre">l</span> on the middle letter row, and <span class="inlinepre">x</span> through <span class="inlinepre">m</span> on the lower row.</p>
             
             <p>All processing is done locally within the browser. No images are uploaded or otherwise transmitted through the Internet.</p>
             

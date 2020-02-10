@@ -24,11 +24,13 @@ File names should be consistent except for the variable parts, and the variable 
 
 since there are two variable parts separated using a hyphen, and the script ignores the file extension. The delimiters between values need not be the same: `photo-of-alice_2018@home.jpg` and `photo-of-bob_2019@work.jpg` (etc.) can be parsed using `photo-of-*_*@*`.
 
-The script then allows you to browse through the available dimensions using the -/+ buttons indicated for each dimension, or the keyboard. The keys for the first dimension are under the "1", i.e. on a QWERTY keyboard, "1" itself for one up in this dimension, and "q" for one down. "2" and "w" increase and decrease the second dimension, respectively, and "0" and "p" represent the tenth dimension. The first two dimensions can additionally be controlled by the arrow keys.
+The script then allows you to browse through the available dimensions using the -/+ buttons indicated for each dimension, or the keyboard. The keys for the first dimension are under the `1`, i.e. on a QWERTY keyboard, `1` itself for one up in this dimension, and `q` for one down. `2` and `w` increase and decrease the second dimension, respectively, and `0` and `p` represent the tenth dimension. The first two dimensions can additionally be controlled by the arrow keys.
 
-Dimensions are numbered in the order that they appear in the file names. The values of each dimension are ordered alphabetically.
+Dimensions are numbered in the order that they appear in the file names. The values of each dimension are ordered alphabetically or numerically as appropriate.
 
 Try to make sure all possible combinations are present in the data. If there are gaps, it may not be possible to browse from one file to another.
+
+Specific positions can be saved for quick access. By pressing `shift` + `s`, the current position is saved to the button `s`. Press `s` again to directly move to the saved position. A total of 14 positions can be saved, using the buttons `s` through `l` on the middle letter row, and `x` through `m` on the lower row.
 
 All processing is done locally within the browser. No images are uploaded or otherwise transmitted through the Internet.
 

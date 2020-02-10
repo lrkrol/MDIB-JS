@@ -1,7 +1,7 @@
 /*
 
 Multi-Dimensional Image Browser JS
-v1.0.2
+v1.1.0
 
 
 MIT License
@@ -39,6 +39,7 @@ var dimvalues = [];          // values of the dimensions
 var ndimvalues = [];         // number of values per dimension
 var currentpos = [];         // current image position
 var currenttab = '';         // currently active tab
+var savedpositions = [];     // container for saved positions
 
 var $ = function(id) { return document.getElementById(id); };
 
@@ -237,16 +238,18 @@ function renderBrowser() {
     browserhtml += '<div id="generalinfo">from ' + numimagesparsed + ' images in ' + ndims + ' (' + ndimvalues.join('x') + ') dimensions.</div>'
     browserhtml += '<p></p>Dimensions:';
 
-    let shortcutorder = 'qwertyuiop';
+    let dimshortcutorder = 'qwertyuiop';
     for (i = 0; i < ndims; i++) {
         browserhtml += '<div class="dimbrowser">';
-        browserhtml += '<span class="button" onclick="changeDim(' + i + ', -1);"><span class="shortcut">' + shortcutorder[i] + '</span> &ndash;</span>';
+        browserhtml += '<span class="button" onclick="changeDim(' + i + ', -1);"><span class="shortcut">' + dimshortcutorder[i] + '</span> &ndash;</span>';
         browserhtml += '<span id="dimvalue' + i + '" class="dimvalue"></span>';
         browserhtml += '<span class="button" onclick="changeDim(' + i + ', 1);">+ <span class="shortcut">' + (i+1) + '</span></span>'
         browserhtml += '</div>';
     }
 
     browserhtml += '<p>Zoom: <span class="button" onclick="$(\'image\').style.backgroundSize = \'auto\';">original</span> <span class="button" onclick="$(\'image\').style.backgroundSize = \'contain\';">contain</span> <span class="button" onclick="$(\'image\').style.backgroundSize = \'cover\';">cover</span></p>';
+    
+    browserhtml += '<div id="savedpositions"></div>';
 
     $('browsercontainer').innerHTML = browserhtml;
 
@@ -264,6 +267,17 @@ function updateBrowser() {
     for (i = 0; i < ndims; i++) {
         $('dimvalue' + i).innerHTML = dimvalues[i][currentpos[i]]
     }
+    
+    if (savedpositions.length > 0) {
+        let savedposhtml = 'Saved postions:';
+        let savedposorder = 'sdfghjklxcvbnm';
+        for (let s = 0; s < savedpositions.length; s++) {
+            if (typeof savedpositions[s] !== 'undefined') {
+                savedposhtml += '<div class="savedposition"><span class="button" onclick="gotoSavedPosition(' + s + ');"><span class="shortcut">' + savedposorder[s] + '</span> &rarr;</span> <span class="savedposfile">' + pos2file(savedpositions[s]) + '</span></div>';
+            }
+        }
+        $('savedpositions').innerHTML = savedposhtml;
+    }
 
 }
 
@@ -280,7 +294,6 @@ function changeDim(dim, change) {
             if (pos2file(currentpos) != -1) {
                 // file exists at this coordinate: showing image
                 $('image').style.backgroundImage = 'url(' + imgdata[file] + ')';
-                // log('(' + currentpos + ') ' + file);
                 updateBrowser();
             } else {
                 log('(' + currentpos + ') ' + file + ' does not exist.');
@@ -291,6 +304,28 @@ function changeDim(dim, change) {
         log('There is no dimension ' + dim + '.');
     }
 
+}
+
+
+function savePosition(s) {
+    
+    // saving current position
+    savedpositions[s] = [...currentpos];
+    updateBrowser();
+    
+}
+
+
+function gotoSavedPosition(s) {
+    
+    // moving to saved position
+    if (typeof savedpositions[s] !== 'undefined') {
+        currentpos = [...savedpositions[s]];
+        if (pos2file(currentpos) != -1) {
+            $('image').style.backgroundImage = 'url(' + imgdata[file] + ')';
+            updateBrowser(); 
+        }
+    }    
 }
 
 
@@ -307,11 +342,13 @@ document.addEventListener("DOMContentLoaded", function() {
     $('fileinput').addEventListener('change', processFiles, false);
 });
 
-
 document.onkeydown = function(e){
     // binding shortcut keys
     if (currenttab == 'browser') {
         switch (e.keyCode) {
+            
+            // dimension shortcuts //
+            
             case 37: // arrow left
                 changeDim(0, -1);
                 break;
@@ -389,6 +426,65 @@ document.onkeydown = function(e){
                 break;
             case 80: // p
                 changeDim(9, -1);
+                break;
+                
+            // position shortcuts //
+                
+            case 83: // s
+                if (event.shiftKey) { savePosition(0); }
+                else { gotoSavedPosition(0); }
+                break;
+            case 68: // d
+                if (event.shiftKey) { savePosition(1); }
+                else { gotoSavedPosition(1); }
+                break;
+            case 70: // f
+                if (event.shiftKey) { savePosition(2); }
+                else { gotoSavedPosition(2); }
+                break;
+            case 71: // g
+                if (event.shiftKey) { savePosition(3); }
+                else { gotoSavedPosition(3); }
+                break;
+            case 72: // h
+                if (event.shiftKey) { savePosition(4); }
+                else { gotoSavedPosition(4); }
+                break;
+            case 74: // j
+                if (event.shiftKey) { savePosition(5); }
+                else { gotoSavedPosition(5); }
+                break;
+            case 75: // k
+                if (event.shiftKey) { savePosition(6); }
+                else { gotoSavedPosition(6); }
+                break;
+            case 76: // l
+                if (event.shiftKey) { savePosition(7); }
+                else { gotoSavedPosition(7); }
+                break;
+            case 88: // x
+                if (event.shiftKey) { savePosition(8); }
+                else { gotoSavedPosition(8); }
+                break;
+            case 67: // c
+                if (event.shiftKey) { savePosition(9); }
+                else { gotoSavedPosition(9); }
+                break;
+            case 86: // v
+                if (event.shiftKey) { savePosition(10); }
+                else { gotoSavedPosition(10); }
+                break;
+            case 66: // b
+                if (event.shiftKey) { savePosition(11); }
+                else { gotoSavedPosition(11); }
+                break;
+            case 78: // n
+                if (event.shiftKey) { savePosition(12); }
+                else { gotoSavedPosition(12); }
+                break;
+            case 77: // m
+                if (event.shiftKey) { savePosition(13); }
+                else { gotoSavedPosition(13); }
                 break;
         }
     }
