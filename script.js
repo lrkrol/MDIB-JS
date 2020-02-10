@@ -1,12 +1,12 @@
 /*
 
 Multi-Dimensional Image Browser JS
-v1.1.0
+v1.1.1
 
 
 MIT License
 
-Copyright (c) 2019 Laurens R Krol
+Copyright (c) 2019, 2020 Laurens R Krol
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -341,6 +341,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // processing files when user has selected them
     $('fileinput').addEventListener('change', processFiles, false);
 });
+
 
 document.onkeydown = function(e){
     // binding shortcut keys

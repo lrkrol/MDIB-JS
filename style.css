@@ -1,12 +1,12 @@
 /*
 
 Multi-Dimensional Image Browser JS
-v1.1.0
+v1.1.1
 
 
 MIT License
 
-Copyright (c) 2019 Laurens R Krol
+Copyright (c) 2019, 2020 Laurens R Krol
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -226,6 +226,7 @@ input {
         box-sizing: content-box;
         font-size: small;
         height: 6em;
+        min-height: 1em;
         overflow-x: visible;
         overflow-y: scroll;
         margin-top: 5px;
