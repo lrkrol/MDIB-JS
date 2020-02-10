@@ -1,7 +1,7 @@
 /*
 
 Multi-Dimensional Image Browser JS
-v1.0.1
+v1.0.2
 
 
 MIT License
@@ -152,7 +152,11 @@ function applyPattern() {
 
     // keeping only unique values, sorted
     for (let d = 0; d < ndims; d++) {
-        dimvalues[d] = dimvalues[d].filter((v, i, a) => a.indexOf(v) === i).sort();
+        if (isNumeric(dimvalues[d][0])) {
+            dimvalues[d] = dimvalues[d].filter((v, i, a) => a.indexOf(v) === i).sort(sortNumeric);
+        } else {
+            dimvalues[d] = dimvalues[d].filter((v, i, a) => a.indexOf(v) === i).sort();
+        }
         ndimvalues.push(dimvalues[d].length);
     }
 
@@ -174,6 +178,18 @@ function applyPattern() {
         log('No images parsed. None selected?');
     }
 
+}
+
+function isNumeric(n) {
+    
+    return !isNaN(parseFloat(n)) && isFinite(n);
+    
+}
+
+function sortNumeric(a, b) {
+    
+    return a - b;
+    
 }
 
 
